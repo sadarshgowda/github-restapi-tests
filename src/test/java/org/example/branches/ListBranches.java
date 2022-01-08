@@ -33,6 +33,8 @@ public class ListBranches {
 
         Response response = ApiClient.get(baseUrl);
 
+        System.out.println(response.getBody().asString());
+
         //Branch[] branchResponse = mapper.readValue(response.getBody().asString(),Branch[].class);
 
         List<Branch> branchResponse = mapper.readValue(response.getBody().asString(), new TypeReference<List<Branch>>() {});
