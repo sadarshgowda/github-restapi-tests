@@ -5,6 +5,7 @@ import java.util.Properties;
 public class Constants {
     public static String BASE_URL = "https://api.github.com/";
     public static String LIST_BRANCHES_ENDPOINT = "repos/%s/%s/branches";
+    public static String RENAME_BRANCH_ENDPOINT = "repos/{owner}/{repo}/branches/{branch}/rename";
 
     public static Properties properties = new Properties();
 
