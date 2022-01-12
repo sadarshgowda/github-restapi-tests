@@ -1,6 +1,7 @@
 package org.example.util;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import lombok.Data;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +27,7 @@ public class BaseTestCase {
 
     public static HashMap<String,String> headers(){
         HashMap<String,String> headers = new HashMap<>();
-        headers.put("Authorization","token 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");
+        headers.put("Authorization","token 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");
 
         return headers;
     }

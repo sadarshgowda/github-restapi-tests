@@ -50,7 +50,7 @@ public class ApiClient extends BaseTestCase {
         }
 
         io.restassured.response.Response response = requestSpecification
-                .body(requestBody.toString())
+                .body(requestBody)
                 .log().all()
                 .post(url)
                 .then()
