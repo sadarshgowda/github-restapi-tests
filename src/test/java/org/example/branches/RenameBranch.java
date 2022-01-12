@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import io.restassured.response.Response;
+import org.example.models.RenameBranchRequest;
 import org.example.util.ApiClient;
 import org.example.util.BaseTestCase;
 import org.example.util.Constants;
@@ -14,24 +15,19 @@ import java.util.HashMap;
 public class RenameBranch extends BaseTestCase {
 
     @Test
-    public void renameAndVerifyTheBranchName(){
-
-        JSONObject obj = new JSONObject();
-        obj.put("new_name","test");
+    public void renameAndVerifyTheBranchName() throws Exception{
 
         String baseUrl = Constants.BASE_URL + Constants.RENAME_BRANCH_ENDPOINT;
 
-
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-                .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        RenameBranchRequest renameBranchRequest = new RenameBranchRequest();
+        renameBranchRequest.setNewName("test1");
 
         HashMap<String,String> params = new HashMap<>();
         params.put("owner","sadarshgowda");
         params.put("repo","github-restassured-restapi");
-        params.put("branch","test1");
+        params.put("branch","test");
 
-        Response response = ApiClient.post(obj,baseUrl,params);
+        Response response = ApiClient.post(renameBranchRequest,baseUrl,params);
 
         System.out.println(response.getBody().asString());
     }
