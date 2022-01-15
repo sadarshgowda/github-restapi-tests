@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.example.impl.GitServiceImpl;
 import org.example.models.Branch;
+import org.example.models.GenericResponseMapper;
 import org.example.util.ApiClient;
 import org.example.util.Constants;
 import org.example.util.ObjectMapperWrapper;
@@ -25,18 +27,11 @@ public class ListBranches {
 
         String input = "main";
 
-        String baseUrl = Constants.BASE_URL + String.format(Constants.LIST_BRANCHES_ENDPOINT,
-                Constants.properties.getProperty("USER_NAME"),Constants.properties.getProperty("REPOSITORY_1"));
+        GitServiceImpl gitServiceImpl = new GitServiceImpl();
 
-        Response response = ApiClient.get(baseUrl);
+        GenericResponseMapper<List<Branch>> listBranchResponse = gitServiceImpl.listBranch();
 
-        System.out.println(response.getBody().asString());
-
-        //Branch[] branchResponse = mapper.readValue(response.getBody().asString(),Branch[].class);
-
-        List<Branch> branchResponse = ObjectMapperWrapper.getMapper().readValue(response.getBody().asString(), new TypeReference<List<Branch>>() {});
-
-        boolean result = branchResponse.stream().anyMatch(item -> item.getName().equals(input));
+        boolean result = listBranchResponse.getResponse().stream().anyMatch(item -> item.getName().equals(input));
 
         Assert.assertTrue(result);
 
