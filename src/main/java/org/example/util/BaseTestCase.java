@@ -27,7 +27,7 @@ public class BaseTestCase {
 
     public static HashMap<String,String> headers(){
         HashMap<String,String> headers = new HashMap<>();
-        headers.put("Authorization","token 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");
+        headers.put("Authorization","token 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");
 
         return headers;
     }
