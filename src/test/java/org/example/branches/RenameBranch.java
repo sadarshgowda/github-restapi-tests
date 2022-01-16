@@ -26,6 +26,7 @@ public class RenameBranch extends BaseTestCase {
 
         RenameBranchRequest renameBranchRequest = new RenameBranchRequest();
         renameBranchRequest.setNewName(Constants.RENAME_BRANCH_NAME);
+        
 
         GenericResponseMapper<RenameBranchResponse> renameBranchResponse = gitServiceImpl.renameGitBranch(renameBranchRequest);
         System.out.println(renameBranchResponse.getResponse().getName());
